@@ -1,2 +1,0 @@
-# MLBNotifications
-npm start 
