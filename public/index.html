@@ -1,27 +1,15 @@
+
 <link rel="stylesheet" href="/css/style.css">
-<div class='bold-line'></div>
-<div class='container'>
-  <div class='window'>
-    <div class='overlay'></div>
-    <div class='content'>
-      <div class='welcome'>Welcome to StaTrax</div>
-      <div class='subtitle'>We're almost done. Before using our services you need to create an account.</div>
-      <div class='input-fields'>
-        <input type='text' placeholder='Username' class='input-line full-width'></input>
-        <input type='email' placeholder='Email' class='input-line full-width'></input>
-        <input type='password' placeholder='Password' class='input-line full-width'></input>
-
-      </div>
-      <div><button id="login" class='ghost-round full-width'>Let me in</button></div>
-    </div>
-  </div>
+<!doctype html>
+<html>
+  <body>
+<div class="login">
+  <h1>Login</h1>
+    <form method="post">
+      <input type="text" name="u" placeholder="Username" required="required" />
+        <input type="password" name="p" placeholder="Password" required="required" />
+        <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
+    </form>
 </div>
-
-<script type="text/javascript">
-var loginButton = document.getElementById('login');
-
-loginButton.addEventListener('clock', function() {
-  console.log("login clicked");
-});
-</script>
-
+</body>
+</html>
