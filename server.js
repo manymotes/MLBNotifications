@@ -8,16 +8,24 @@ port = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-// connection configurations
-const mc = mysql.createConnection({
-    host: 'localhost',
-    user: 'steve',
-    password: 'bar',
-    database: 'MLB'
-});
 
-// connect to database
-mc.connect();
+// // used to test mysql connection/config
+// const mc = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'steve',
+//     password: 'bar',
+//     database: 'MLB'
+// });
+//
+// // connect to database
+// mc.connect();
+//
+// mc.query('SELECT * FROM users', (err,rows) => {
+//     if(err) throw err;
+//
+//     console.log('Data received from Db:\n');
+//     console.log(rows);
+// });
 
 
 // viewed at http://localhost:8080
