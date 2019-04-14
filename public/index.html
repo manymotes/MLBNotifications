@@ -12,12 +12,17 @@
 <body>
 
     <div class="login">
-        <h1>Welcome to StatTrax</h1>
-            <input id="fName" type="text" name="u" placeholder="Username" required="required" />
-            <input id="lName" type="text" name="u" placeholder="Username" required="required" />
+        <h1 id="headerWords">Whats up? Login to StatTrax</h1>
+
+            <input id="fName" type="text" name="u" placeholder="First name" hidden/>
+            <input id="lName" type="text" name="u" placeholder="Last name" hidden/>
             <input id="email" type="text" name="u" placeholder="Email" required="required" />
             <input id="password" type="password" name="p" placeholder="Password" required="required" />
-            <button id="login" type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
+            </br>
+            <button id="loginButton" type="submit" class="btn btn-primary btn-block btn-large">Let me in</button>
+            <button id="signUpButton" type="submit" class="btn btn-primary btn-block btn-large" style="display: none;">Sign me up</button>
+            <h2 id="createForm">Create Account</h2>
+            <h2 id="loginForm" style="display: none;">Login Account</h2>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
@@ -85,6 +90,11 @@ input {
     transition: box-shadow .5s ease;
 }
 input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgba(255,255,255,0.2); }
+
+h2 {
+    color: white;
+    font-size: 15px;
+}
 
 </style>
 

@@ -4,7 +4,7 @@ $(document).ready(function() {
         let $ = jQuery;
         console.log("hello");
 
-        $('#login').on("click", function () {
+        $('#loginButton').on("click", function () {
             console.log("loging button clicked");
             console.log($('#fName').val());
             console.log($('#lName').val());
@@ -19,7 +19,7 @@ $(document).ready(function() {
             params.l_name = $('#lName').val();
             $.ajax({
                 type : "POST",
-                url :  "/users",
+                url :  "/users/signup",
                 data : JSON.stringify(params),
                 async: false,
                 headers: {
@@ -33,5 +33,22 @@ $(document).ready(function() {
                     alert(e.responseText);
                 }
             });
+        });
+
+        $('#createForm').on("click", function () {
+            console.log("create");
+            $('#headerWords').text("Sign up for StatTrax");
+            $('#fName, #lName').show();
+            $('#createForm, #loginButton').hide();
+            $('#loginForm, #signUpButton').show();
+
+        })
+
+        $('#loginForm').on("click", function () {
+            console.log("loginFrom");
+            $('#headerWords').text("Whats up? Login to StatTrax");
+            $('#fName, #lName').hide();
+            $('#createForm, #loginButton').show();
+            $('#loginForm, #signUpButton').hide();
         });
 });

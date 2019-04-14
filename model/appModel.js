@@ -10,6 +10,11 @@ var User = function(user){
     this.date_created = new Date();
 };
 
+let ExistingUser = function(existingUser){
+    this.password = user.password;
+    this.email = user.email;
+}
+
 User.createUser = function createUser(newUser, result) {
     sql.query("INSERT INTO users set ?", newUser, function (err, res) {
 
@@ -23,5 +28,19 @@ User.createUser = function createUser(newUser, result) {
         }
     });
 };
+
+User.login = function login(email, password) {
+    let loginQuery = "SELECT * FROM users WHERE email= " + email + " AND password = " + password + ";";
+    sql.query(loginQuery, function (err, res) {
+
+        if(err) {
+            console.log("error: ", err);
+            result(err, null);
+        }
+        else{
+            console.log(res);
+        }
+    });
+}
 
 module.exports= User;
