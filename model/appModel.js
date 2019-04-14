@@ -10,7 +10,7 @@ var User = function(user){
     this.date_created = new Date();
 };
 
-User.createTask = function createUser(newUser, result) {
+User.createUser = function createUser(newUser, result) {
     sql.query("INSERT INTO users set ?", newUser, function (err, res) {
 
         if(err) {

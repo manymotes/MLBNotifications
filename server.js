@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var mysql = require('mysql');
+var jquery = require('jquery')
 bodyParser = require('body-parser');
 port = process.env.PORT || 3000;
 
@@ -39,5 +40,5 @@ console.log('API server started on: ' + port);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var routes = require('./routes/approutes');
+let routes = require('./routes/approutes');
 routes(app); //register the route
