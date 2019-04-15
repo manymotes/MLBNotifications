@@ -16,7 +16,6 @@ ExistingUser.loginUser = function loginUser(existingUser, result) {
             result(err, null);
         }
         else{
-            //todo check if passward equals
             if(res.length == 0) {
                     result(null, null);
 
