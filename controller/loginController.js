@@ -15,7 +15,9 @@ exports.loginUser = function(req, res) {
         ExistingUser.loginUser(exist_user, function(err, task) {
             if (err)
                 res.send(err);
-            res.json(task);
+            req.session.user = exist_user;
+            res.redirect('/dashboard');
+            //res.json(task);
         });
     }
 };

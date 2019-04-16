@@ -4,10 +4,18 @@ var path = require('path');
 var mysql = require('mysql');
 var jquery = require('jquery')
 bodyParser = require('body-parser');
+var session = require('client-sessions');
 port = process.env.PORT || 3000;
 
 
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(session({
+    cookieName: 'session',
+    secret: 'random_string_goes_here',
+    duration: 30 * 60 * 1000,
+    activeDuration: 5 * 60 * 1000,
+}));
 
 
 // // used to test mysql connection/config
@@ -34,6 +42,9 @@ app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/public/index.html'));
 });
 
+app.get('/dashboard', function(req, res) {
+    res.sendFile(path.join(__dirname + '/public/dashboard.html'));
+});
 app.listen(port);
 console.log('API server started on: ' + port);
 

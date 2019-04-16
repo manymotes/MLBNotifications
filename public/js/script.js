@@ -59,6 +59,7 @@ $(document).ready(function() {
                 if (response == null) {
                     alert("Incorrect email or password")
                 }
+                location.href = window.location.href + "dashboard";
             },
             error : function(e) {
                 alert(e.responseText);
