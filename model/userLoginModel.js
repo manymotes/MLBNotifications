@@ -17,14 +17,15 @@ ExistingUser.loginUser = function loginUser(existingUser, result) {
         }
         else{
             if(res.length == 0) {
-                    result(null, null);
-
+                console.log("user doesnt exist");
+                    result(err, null);
             }
             else if (existingUser.password == res[0].password) {
                 result(null, "correct password");
             }
             else {
-                result(null, null);
+                console.log("password doenst match");
+                result(err, null);
             }
         }
     });

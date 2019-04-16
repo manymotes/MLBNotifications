@@ -49,22 +49,27 @@ $(document).ready(function() {
             type : "POST",
             url :  "/users/login",
             data : JSON.stringify(params),
-            async: false,
+            async: true,
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             success : function(response) {
+                console.log("success");
                 console.log(response);
                 if (response == null) {
+                    console.log("null response");
                     alert("Incorrect email or password")
                 }
                 location.href = window.location.href + "dashboard";
             },
             error : function(e) {
+                console.log("error response");
                 alert(e.responseText);
             }
         });
+
+        console.log("after ajax");
     });
 
     $('#createForm').on("click", function () {
