@@ -22,7 +22,7 @@ exports.loginUser = function(req, res) {
                 res.sendStatus(200);
             }
             else {
-                res.sendStatus(403); // equivalent to res.status(403).send('Forbidden')res.sendStatus("Invalid username or password"); // equivalent to res.status(403).send('Forbidden')
+                res.sendStatus(401);
             }
         });
     }
