@@ -43,6 +43,8 @@ app.get('/', function(req, res) {
 });
 
 app.get('/dashboard', function(req, res) {
+    // var email = req.session.user.email;
+    // console.log(email);
     res.sendFile(path.join(__dirname + '/public/dashboard.html'));
 });
 app.listen(port);
