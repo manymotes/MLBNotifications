@@ -1,4 +1,8 @@
 var express = require('express');
+var schedule = require('node-schedule');
+var probPitchers = require('./probablePitchers');
+const probables = require('./probables');
+const fs = require('fs');
 var app = express();
 var path = require('path');
 var mysql = require('mysql');
@@ -16,25 +20,6 @@ app.use(session({
     duration: 30 * 60 * 1000,
     activeDuration: 5 * 60 * 1000,
 }));
-
-
-// // used to test mysql connection/config
-// const mc = mysql.createConnection({
-//     host: 'localhost',
-//     user: 'steve',
-//     password: 'bar',
-//     database: 'MLB'
-// });
-//
-// // connect to database
-// mc.connect();
-//
-// mc.query('SELECT * FROM users', (err,rows) => {
-//     if(err) throw err;
-//
-//     console.log('Data received from Db:\n');
-//     console.log(rows);
-// });
 
 
 // viewed at http://localhost:8080
@@ -55,3 +40,38 @@ app.use(bodyParser.json());
 
 let routes = require('./routes/approutes');
 routes(app); //register the route
+
+
+
+var j = schedule.scheduleJob('30 * * * *', function(){
+    console.log('The answer to life, the universe, and everything!');
+    getData();
+});
+
+
+const getData = async() => {
+    try {
+
+        // Today's date, or provide your own: format 2019-03-24
+        const d = new Date();
+        const day = `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;
+        console.log(day);
+
+        // File to write to
+        const outputFile = './probable-pitchers.json';
+
+        // Get pitchers
+        probables.mlbpitchers.getPitchers(day, (data) => {
+            fs.writeFile(outputFile, JSON.stringify(data), {flag: 'w'}, (err) => {
+                if (err) {
+                    console.error(`Error in writing to ${file}: ${err}`);
+                } else {
+                    console.error(`Probable pitchers successfully written to ${outputFile}.`);
+                }
+            });
+        });
+    } catch (err) {
+        console.error(`Error in getData(): ${err}`);
+    }
+
+};
