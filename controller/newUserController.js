@@ -1,7 +1,7 @@
 'use strict';
 
 
-let User = require('../model/appModel.js');
+let User = require('../model/newUser.js');
 
 
 exports.create_a_user = function(req, res) {

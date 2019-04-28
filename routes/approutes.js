@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(app) {
-    var userController = require('../controller/appController');
+    var userController = require('../controller/newUserController');
     let userLoginController = require('../controller/loginController');
 
     // todoList Routes
