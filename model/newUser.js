@@ -10,39 +10,31 @@ var User = function(user){
     this.date_created = new Date();
 };
 
-
-//
-// let ExistingUser = function(existingUser){
-//     this.password = existingUser.password;
-//     this.email = existingUser.email;
-// }
-
 User.createUser = function createUser(newUser, result) {
-    sql.query("INSERT INTO users set ?", newUser, function (err, res) {
+    sql.query("SELECT COUNT(*) AS cnt FROM users WHERE email = ? " ,
+        newUser.email , function (err, data) {
 
-        if(err) {
-            console.log("error: ", err);
-            result(err, null);
-        }
-        else{
-            console.log(res.insertId);
-            result(null, res.insertId);
+        if (err) {
+            console.log(err);
+        } else {
+            if(data[0].cnt > 0){
+                console.log("email already exists");
+                result(null, -1);
+            } else {
+                console.log("new email");
+                sql.query("INSERT INTO users set ?", newUser, function (err, res) {
+                    if (err) {
+                        console.log("error: ", err);
+                        result(err, null);
+                    } else {
+                        console.log(res.insertId);
+                        result(null, res.insertId);
+                    }
+                });
+            }
         }
     });
 };
 
-// ExistingUser.login = function login(existingUser, result) {
-//     let loginQuery = "SELECT * FROM users WHERE email= " + existingUser.email + " AND password = " + existingUser.password + ";";
-//     sql.query(loginQuery, function (err, res) {
-//
-//         if(err) {
-//             console.log("error: ", err);
-//             result(err, null);
-//         }
-//         else{
-//             console.log(res);
-//         }
-//     });
-// }
 
 module.exports= User;

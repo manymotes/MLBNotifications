@@ -1,20 +1,134 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Sample Site</title>
+<div id="root"></div>
+<div id="pitcher1"></div>
+<div id="pitcher2"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/babel">
+    class Dashboard extends React.Component {
+        render() {
+            return (<h1>Player Dashboard</h1>);
+        }
+    }
 
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-    <style>
-        body { padding-top:50px; }
-    </style>
-</head>
-    <body>
-        Pitcher
+    class NameForm1 extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {value: ''};
+
+            this.handleChange = this.handleChange.bind(this);
+            this.handleSubmit = this.handleSubmit.bind(this, props.id);
+        }
+
+        handleChange(event) {
+            this.setState({value: event.target.value});
+        }
+
+        handleSubmit(event) {
+            //alert('A name was submitted: ' + this.state.value);
+            //event.preventDefault();
+            console.log("From 1");
+
+            let params = {};
+            params.name = this.state.value;
+            params.pitcherNumber = 1;
+            $.ajax({
+                type : "POST",
+                url :  "/pitchers/update",
+                data : JSON.stringify(params),
+                async: false,
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                success : function(response) {
+                    console.log("pitcher updates!!!")
+                },
+                error : function(e) {
+                    console.log("could not save pitcher info");
+                }
+            });
+        }
+
+        render() {
+            return (
+                <form onSubmit={this.handleSubmit}>
+                    <label>
+                        Name:
+                        <input type="text" value={this.state.value} onChange={this.handleChange} />
+                    </label>
+                    <input type="submit" value="Submit" />
+                </form>
+            );
+        }
+    }
+
+    class NameForm2 extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {value: ''};
+
+            this.handleChange = this.handleChange.bind(this);
+            this.handleSubmit = this.handleSubmit.bind(this, props.id);
+        }
+
+        handleChange(event) {
+            this.setState({value: event.target.value});
+        }
+
+        handleSubmit(event) {
+            //alert('A name was submitted: ' + this.state.value);
+            console.log("From 2");
+            event.preventDefault();
 
 
-    </body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-    <script text="type/javascript" src="/js/dashboard.js"></script>
-</html>
+            debugger;
+            let params = {};
+            params.name = this.state.value;
+            params.pitcherNumber =2;
+            $.ajax({
+                type : "POST",
+                url :  "/pitchers/update",
+                data : JSON.stringify(params),
+                async: false,
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                success : function(response) {
+                    console.log("pitcher updates!!!")
+                },
+                error : function(e) {
+                    console.log("could not save pitcher info");
+                }
+            });
+        }
+
+        render() {
+            return (
+                <form onSubmit={this.handleSubmit}>
+                    <label>
+                        Name:
+                        <input type="text" value={this.state.value} onChange={this.handleChange} />
+                    </label>
+                    <input type="submit" value="Submit" />
+                </form>
+            );
+        }
+    }
+
+
+    ReactDOM.render(
+        <Dashboard />,
+        document.getElementById('root')
+    );
+    ReactDOM.render(
+        <NameForm1/>,
+        document.getElementById('pitcher1')
+    );
+    ReactDOM.render(
+        <NameForm2/>,
+        document.getElementById('pitcher2')
+    );
+</script>

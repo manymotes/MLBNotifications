@@ -9,6 +9,7 @@ CREATE TABLE users (
 
 CREATE TABLE pitchers (
   id INT,
+  pitcherNumber INT,
   name VARCHAR(150) NOT NULL,
   FOREIGN KEY (id) REFERENCES users(id) ON DELETE CASCADE
 );

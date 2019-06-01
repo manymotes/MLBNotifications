@@ -2,7 +2,7 @@
 
 let ExistingUser = require('../model/userLoginModel.js');
 
-exports.loginUser = function(req, res) {
+exports.login_user = function(req, res) {
     let exist_user = new ExistingUser(req.body);
 
     //handles null error
@@ -16,7 +16,6 @@ exports.loginUser = function(req, res) {
             if (err)
                 res.send(err);
             req.session.user = exist_user;
-            //res.redirect('/dashboard');
             console.log(task);
             if (task) {
                 res.sendStatus(200);

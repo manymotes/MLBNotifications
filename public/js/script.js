@@ -5,12 +5,6 @@ $(document).ready(function() {
     console.log("hello");
 
     $('#signUpButton').on("click", function () {
-        console.log("signup button clicked");
-        console.log($('#fName').val());
-        console.log($('#lName').val());
-        console.log($('#email').val());
-        console.log($('#password').val());
-        // "ken", "motes", 'password', 'motesmass@gmail.com',
 
         let params = {};
         params.password = $('#password').val();
@@ -27,10 +21,14 @@ $(document).ready(function() {
                 'Content-Type': 'application/json'
             },
             success : function(response) {
-                console.log(response);
+                location.href = window.location.href + "dashboard";
             },
             error : function(e) {
-                alert(e.responseText);
+                if (e.responseText == "") {
+                    alert("Email is already registered");
+                } else {
+                    alert(e.responseText);
+                }
             }
         });
     });
@@ -38,9 +36,6 @@ $(document).ready(function() {
     $('#loginButton').on("click", function () {
         console.log("loging button clicked");
 
-        console.log($('#email').val());
-        console.log($('#password').val());
-        // "ken", "motes", 'password', 'motesmass@gmail.com',
 
         let params = {};
         params.password = $('#password').val();
