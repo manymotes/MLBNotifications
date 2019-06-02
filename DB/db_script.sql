@@ -17,4 +17,6 @@ CREATE TABLE pitchers (
 ALTER TABLE pitchers ADD UNIQUE KEY PitcherRule (id, pitcherNumber);
 
 
+
+
 -- INSERT into pitchers (id, name) value (1, "Trevor Bauer");
