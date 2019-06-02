@@ -1,8 +1,9 @@
 const fs = require('fs');
 const probables = require('./probables');
 
+let ProbablePitchers = function () {};
 
-const getData = async() => {
+ProbablePitchers.getData = async() => {
     try {
    
         // Today's date, or provide your own: format 2019-03-24
@@ -29,7 +30,7 @@ const getData = async() => {
 
 };
 
-getData();
+module.exports = ProbablePitchers;
 
 
 

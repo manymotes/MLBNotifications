@@ -1,6 +1,6 @@
 var express = require('express');
 var schedule = require('node-schedule');
-var probPitchers = require('./probablePitchers');
+var ProbablePitchers = require('./probablePitchers');
 const probables = require('./probables');
 const fs = require('fs');
 var app = express();
@@ -9,8 +9,8 @@ var mysql = require('mysql');
 var jquery = require('jquery')
 bodyParser = require('body-parser');
 var session = require('client-sessions');
+let EmailGun = require('./mailGun/emailGun.js');
 port = process.env.PORT || 3000;
-
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -42,36 +42,11 @@ let routes = require('./routes/approutes');
 routes(app); //register the route
 
 
-
-var j = schedule.scheduleJob('30 * * * *', function(){
+//this should fire every minute
+var j = schedule.scheduleJob('*/1 * * *', function(){
     console.log('The answer to life, the universe, and everything!');
-    getData();
+    ProbablePitchers.getData();
+    EmailGun.fire();
 });
 
 
-const getData = async() => {
-    try {
-
-        // Today's date, or provide your own: format 2019-03-24
-        const d = new Date();
-        const day = `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;
-        console.log(day);
-
-        // File to write to
-        const outputFile = './probable-pitchers.json';
-
-        // Get pitchers
-        probables.mlbpitchers.getPitchers(day, (data) => {
-            fs.writeFile(outputFile, JSON.stringify(data), {flag: 'w'}, (err) => {
-                if (err) {
-                    console.error(`Error in writing to ${file}: ${err}`);
-                } else {
-                    console.error(`Probable pitchers successfully written to ${outputFile}.`);
-                }
-            });
-        });
-    } catch (err) {
-        console.error(`Error in getData(): ${err}`);
-    }
-
-};

@@ -4,6 +4,7 @@
 let User = require('../model/newUser.js');
 
 
+
 exports.create_a_user = function(req, res) {
     let new_user = new User(req.body);
     console.log(new_user);
