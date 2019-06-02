@@ -26,13 +26,10 @@
         }
 
         handleSubmit(event) {
-            //alert('A name was submitted: ' + this.state.value);
-            //event.preventDefault();
-            console.log("From 1");
-
             let params = {};
             params.name = this.state.value;
             params.pitcherNumber = 1;
+            console.log(params.name, params.pitcherNumber);
             $.ajax({
                 type : "POST",
                 url :  "/pitchers/update",
@@ -79,14 +76,10 @@
 
         handleSubmit(event) {
             //alert('A name was submitted: ' + this.state.value);
-            console.log("From 2");
-            event.preventDefault();
 
-
-            debugger;
             let params = {};
             params.name = this.state.value;
-            params.pitcherNumber =2;
+            params.pitcherNumber = 2;
             $.ajax({
                 type : "POST",
                 url :  "/pitchers/update",
@@ -117,7 +110,6 @@
             );
         }
     }
-
 
     ReactDOM.render(
         <Dashboard />,

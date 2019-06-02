@@ -1122,60 +1122,67 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="282" parent="277" name="id">
-      <ColNames>id</ColNames>
+    <index id="282" parent="277" name="PitcherRule">
+      <ColNames>id
+pitcherNumber</ColNames>
+      <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <foreign-key id="283" parent="277" name="pitchers_ibfk_1">
+    <key id="283" parent="277" name="PitcherRule">
+      <ColNames>id
+pitcherNumber</ColNames>
+      <UnderlyingIndexName>PitcherRule</UnderlyingIndexName>
+    </key>
+    <foreign-key id="284" parent="277" name="pitchers_ibfk_1">
       <ColNames>id</ColNames>
       <RefSchemaName>mlb</RefSchemaName>
       <RefTableName>users</RefTableName>
       <RefColNames>id</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="284" parent="278" name="id">
+    <column id="285" parent="278" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="285" parent="278" name="f_name">
+    <column id="286" parent="278" name="f_name">
       <Position>2</Position>
       <DataType>varchar(40)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="286" parent="278" name="l_name">
+    <column id="287" parent="278" name="l_name">
       <Position>3</Position>
       <DataType>varchar(25)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="287" parent="278" name="password">
+    <column id="288" parent="278" name="password">
       <Position>4</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="288" parent="278" name="email">
+    <column id="289" parent="278" name="email">
       <Position>5</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="289" parent="278" name="phone_number">
+    <column id="290" parent="278" name="phone_number">
       <Position>6</Position>
       <DataType>varchar(10)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="290" parent="278" name="date_created">
+    <column id="291" parent="278" name="date_created">
       <Position>7</Position>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="291" parent="278" name="PRIMARY">
+    <key id="292" parent="278" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>

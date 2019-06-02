@@ -14,4 +14,7 @@ CREATE TABLE pitchers (
   FOREIGN KEY (id) REFERENCES users(id) ON DELETE CASCADE
 );
 
+ALTER TABLE pitchers ADD UNIQUE KEY PitcherRule (id, pitcherNumber);
+
+
 -- INSERT into pitchers (id, name) value (1, "Trevor Bauer");
