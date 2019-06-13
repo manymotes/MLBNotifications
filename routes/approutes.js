@@ -8,6 +8,9 @@ module.exports = function(app) {
     app.route('/users/signup').post(userController.create_a_user);
     app.route('/users/login').post(userLoginController.login_user);
     app.route('/pitchers/update').post(pitcherController.update_pitcher);
+    app.route('pitchers/getPitchers').get(pitcherController.getPitchersForUser);
+
+
     //
     // app.route('/tasks/:taskId')
     //     .get(todoList.read_a_task)

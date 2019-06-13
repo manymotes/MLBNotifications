@@ -2,12 +2,12 @@
 let sql = require('../modules/db.js');
 
 //Task object constructor
-let Pitcher = function(pitcher, id){
+let Pitchers = function(pitcher, id){
     this.name = pitcher.name;
     this.pitcherNumber  = pitcher.pitcherNumber;
 };
 
-Pitcher.updateDB = function updatePitcher(pitcher, userEmail, result) {
+Pitchers.updateDB = function updatePitcher(pitcher, userEmail, result) {
 
     let id =1;
     sql.query("SELECT id FROM users WHERE email = ?" ,
@@ -39,7 +39,7 @@ Pitcher.updateDB = function updatePitcher(pitcher, userEmail, result) {
 
 };
 
-Pitcher.getPitchersForSubscriber = function getPitchersForSubscriber(subscriberIdx) {
+Pitchers.getPitchersForUser = function getPitchersForSubscriber(subscriberIdx) {
     sql.query("SELECT names FROM pitchers WHERE id = ?", subscriberIdx, function () {
         if (err) {
             console.log("error: ", err);
@@ -52,4 +52,4 @@ Pitcher.getPitchersForSubscriber = function getPitchersForSubscriber(subscriberI
 };
 
 
-module.exports= Pitcher;
+module.exports= Pitchers;
