@@ -39,5 +39,17 @@ Pitcher.updateDB = function updatePitcher(pitcher, userEmail, result) {
 
 };
 
+Pitcher.getPitchersForSubscriber = function getPitchersForSubscriber(subscriberIdx) {
+    sql.query("SELECT names FROM pitchers WHERE id = ?", subscriberIdx, function () {
+        if (err) {
+            console.log("error: ", err);
+            return null;
+        } else {
+            console.log(pitcher.name + "insterted into db");
+            return ;
+        }
+    })
+};
+
 
 module.exports= Pitcher;
