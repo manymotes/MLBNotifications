@@ -39,14 +39,13 @@ Pitchers.updateDB = function updatePitcher(pitcher, userEmail, result) {
 
 };
 
-Pitchers.getPitchersForUser = function getPitchersForSubscriber(subscriberIdx) {
-    sql.query("SELECT names FROM pitchers WHERE id = ?", subscriberIdx, function () {
+Pitchers.getPitchersForUser = function getPitchersForSubscriber(userId) {
+    sql.query("SELECT name FROM pitchers WHERE id = ?", userId, function (err, data) {
         if (err) {
             console.log("error: ", err);
             return null;
         } else {
-            console.log(pitcher.name + "insterted into db");
-            return ;
+            return data;
         }
     })
 };

@@ -17,3 +17,5 @@ UsersDAO.getUserByEmail = function (email) {
         });
 
 }
+
+module.exports = UsersDAO;
