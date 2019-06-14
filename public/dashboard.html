@@ -8,8 +8,24 @@
 <script type="text/babel">
     class Dashboard extends React.Component {
         render() {
+            $.ajax({
+                type : "Get",
+                url :  "/pitchers/getPitchers",
+                async: false,
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                success : function(response) {
+                    console.log(response)
+                },
+                error : function(e) {
+                    console.log("could not get pitcher info");
+                }
+            });
             return (<h1>Player Dashboard</h1>);
         }
+
     }
 
     class NameForm1 extends React.Component {

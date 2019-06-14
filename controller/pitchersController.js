@@ -17,7 +17,8 @@ exports.update_pitcher = function(req, res) {
 };
 
 
-exports.getPitchersForUser = function (req, res, userId) {
+exports.getPitchersForUser = function (req, res) {
+    console.log(req.session.user);
    let pitchersList = Pitchers.getPitchersForUser(userId);
 
    if(pitchersList.length > 0) {
