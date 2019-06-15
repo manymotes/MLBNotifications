@@ -2,7 +2,7 @@
 
 let Pitchers = require('../model/pitchers.js');
 let UsersDAO = require('../DB/usersDAO');
-let UserRep = require('../model/userRep')
+let UserRep = require('../model/userRep');
 
 exports.update_pitcher = function(req, res) {
     let pitcher = new Pitchers(req.body);
@@ -19,16 +19,14 @@ exports.update_pitcher = function(req, res) {
 
 
 exports.getPitchersForUser = function (req, res) {
-    console.log(req.session.user.email);
-    let usesRep = UsersDAO.getUserByEmail(req.session.user.email);
-    let pitchersList = Pitchers.getPitchersForUser(usesRep.id);
-
-    if(pitchersList.length > 0) {
-       res.json(pitchersList);
-    }
-    else {
-       res.sendStatus(500);
-    }
+    Pitchers.getPitchersForUser(req.session.user.email, function (results) {
+        if (!results) {
+            res.sendStatus(500);
+        }
+        else {
+            res.json(results);
+        }
+    });
 }
 
 

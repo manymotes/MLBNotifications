@@ -44,9 +44,9 @@ routes(app); //register the route
 
 
 //this should fire every minute
-var j = schedule.scheduleJob('*/1 * * *', function(){
-    ProbablePitchers.getData();
-    EmailGun.fire();
-});
+// var j = schedule.scheduleJob('*/1 * * *', function(){
+//     ProbablePitchers.getData();
+//     EmailGun.fire();
+// });
 
 

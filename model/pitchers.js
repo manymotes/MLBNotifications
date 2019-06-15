@@ -39,13 +39,13 @@ Pitchers.updateDB = function updatePitcher(pitcher, userEmail, result) {
 
 };
 
-Pitchers.getPitchersForUser = function getPitchersForSubscriber(userId) {
-    sql.query("SELECT name FROM pitchers WHERE id = ?", userId, function (err, data) {
+Pitchers.getPitchersForUser = function getPitchersForSubscriber(email, callback) {
+    sql.query("SELECT name FROM pitchers LEFT Join users ON users.id = pitchers.id WHERE email = ?", email, function (err, data) {
         if (err) {
             console.log("error: ", err);
-            return null;
+            callback(err);
         } else {
-            return data;
+            callback(data);
         }
     })
 };
