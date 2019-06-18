@@ -19,13 +19,31 @@ $(document).ready(function() {
             }
         });
 
-    $('#createForm').on("click", function () {
-        console.log("create");
-        $('#headerWords').text("Sign up for StatTrax");
-        $('#fName, #lName').show();
-        $('#createForm, #loginButton').hide();
-        $('#loginForm, #signUpButton').show();
+    $('#submit').on("click", function () {
+        console.log("submit clicked");
 
+        savePitcher( document.getElementById("p1").value, 1);
+        savePitcher( document.getElementById("p2").value, 2);
     })
 
+   function savePitcher(name, number) {
+       let params = {};
+       params.name = name;
+       params.pitcherNumber = number;
+       $.ajax({
+           type : "POST",
+           url :  "/pitchers/update",
+           data : JSON.stringify(params),
+           async: false,
+           headers: {
+               'Accept': 'application/json',
+               'Content-Type': 'application/json'
+           },
+           success : function(response) {
+           },
+           error : function(e) {
+               alert("Could not update pitcher info");
+           }
+       });
+    }
 });

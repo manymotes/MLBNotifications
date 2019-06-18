@@ -7,7 +7,7 @@ let Pitchers = function(pitcher, id){
     this.pitcherNumber  = pitcher.pitcherNumber;
 };
 
-Pitchers.updateDB = function updatePitcher(pitcher, userEmail, result) {
+Pitchers.updateDB = function updatePitcher(pitcher, userEmail, result, callback) {
 
     let id =1;
     sql.query("SELECT id FROM users WHERE email = ?" ,
@@ -15,7 +15,7 @@ Pitchers.updateDB = function updatePitcher(pitcher, userEmail, result) {
 
             if (err) {
                 console.log(err);
-                return false;
+                callback(false);
             } else {
                 id = data[0].id;
 
@@ -25,18 +25,14 @@ Pitchers.updateDB = function updatePitcher(pitcher, userEmail, result) {
                 sql.query("INSERT INTO pitchers (id, pitcherNumber, name) values (?, ? , ?) ON DUPLICATE KEY UPDATE name = ?;", [id, pitcher.pitcherNumber, pitcher.name, pitcher.name], function (err, res) {
                     if (err) {
                         console.log("error: ", err);
-                        return false;
+                        callback(false);
                     } else {
                         console.log(pitcher.name + "insterted into db");
-                        return true;
+                        callback(true);
                     }
                 });
             }
         });
-
-
-
-
 };
 
 Pitchers.getPitchersForUser = function getPitchersForSubscriber(email, callback) {
